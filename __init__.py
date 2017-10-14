@@ -2,11 +2,12 @@
 
 # Changelog:
 #   [2008-03-14] Initial version with support for Ogg Vorbis, FLAC and MP3
+#   [2017-10-14] Add support for replaygain (rolandmoser)
 
 PLUGIN_NAME = u"ReplayGain"
 PLUGIN_AUTHOR = u"Philipp Wolfer"
 PLUGIN_DESCRIPTION = """Calculate ReplayGain for selected files and albums."""
-PLUGIN_VERSION = "0.1"
+PLUGIN_VERSION = "0.2"
 PLUGIN_API_VERSIONS = ["0.10", "0.15", "0.16"]
 PLUGIN_LICENSE = "GPL-2.0"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -31,6 +32,7 @@ REPLAYGAIN_COMMANDS = {
     "MPEG-1 Audio": ("replaygain_mp3gain_command", "replaygain_mp3gain_options"),
     "FLAC": ("replaygain_metaflac_command", "replaygain_metaflac_options"),
     "WavPack": ("replaygain_wvgain_command", "replaygain_wvgain_options"),
+    "MPEG-4 Audio": ("replaygain_aacgain_command", "replaygain_aacgain_options"),
 }
 
 
@@ -38,6 +40,7 @@ def calculate_replay_gain_for_files(files, format, tagger):
     """Calculates the replay gain for a list of files in album mode."""
     file_list = ['%s' % encode_filename(f.filename) for f in files]
 
+    tagger.log.info('Format %s' % (format))
     if format in REPLAYGAIN_COMMANDS \
         and tagger.config.setting[REPLAYGAIN_COMMANDS[format][0]]:
         command = tagger.config.setting[REPLAYGAIN_COMMANDS[format][0]]
@@ -159,7 +162,9 @@ class ReplayGainOptionsPage(OptionsPage):
         TextOption("setting", "replaygain_metaflac_command", "metaflac"),
         TextOption("setting", "replaygain_metaflac_options", "--add-replay-gain"),
         TextOption("setting", "replaygain_wvgain_command", "wvgain"),
-        TextOption("setting", "replaygain_wvgain_options", "-a")
+        TextOption("setting", "replaygain_wvgain_options", "-a"),
+        TextOption("setting", "replaygain_aacgain_command", "aacgain"),
+        TextOption("setting", "replaygain_aacgain_options", "-a -s i")
     ]
 
     def __init__(self, parent=None):
@@ -172,12 +177,14 @@ class ReplayGainOptionsPage(OptionsPage):
         self.ui.mp3gain_command.setText(self.config.setting["replaygain_mp3gain_command"])
         self.ui.metaflac_command.setText(self.config.setting["replaygain_metaflac_command"])
         self.ui.wvgain_command.setText(self.config.setting["replaygain_wvgain_command"])
+        self.ui.aacgain_command.setText(self.config.setting["replaygain_aacgain_command"])
 
     def save(self):
         self.config.setting["replaygain_vorbisgain_command"] = unicode(self.ui.vorbisgain_command.text())
         self.config.setting["replaygain_mp3gain_command"] = unicode(self.ui.mp3gain_command.text())
         self.config.setting["replaygain_metaflac_command"] = unicode(self.ui.metaflac_command.text())
         self.config.setting["replaygain_wvgain_command"] = unicode(self.ui.wvgain_command.text())
+        self.config.setting["replaygain_aacgain_command"] = unicode(self.ui.aacgain_command.text())
 
 register_file_action(ReplayGain())
 register_album_action(AlbumGain())

@@ -1,28 +1,40 @@
 # -*- coding: utf-8 -*-
 
-# Automatically generated - don't edit.
-# Use `python setup.py build_ui` to update it.
+# Form implementation generated from reading ui file 'options_replaygain.ui'
+#
+# Created by: PyQt4 UI code generator 4.11.4
+#
+# WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_ReplayGainOptionsPage(object):
     def setupUi(self, ReplayGainOptionsPage):
         ReplayGainOptionsPage.setObjectName(_fromUtf8("ReplayGainOptionsPage"))
         ReplayGainOptionsPage.resize(305, 317)
         self.vboxlayout = QtGui.QVBoxLayout(ReplayGainOptionsPage)
-        self.vboxlayout.setSpacing(6)
         self.vboxlayout.setMargin(9)
+        self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.replay_gain = QtGui.QGroupBox(ReplayGainOptionsPage)
         self.replay_gain.setObjectName(_fromUtf8("replay_gain"))
         self.vboxlayout1 = QtGui.QVBoxLayout(self.replay_gain)
-        self.vboxlayout1.setSpacing(2)
         self.vboxlayout1.setMargin(9)
+        self.vboxlayout1.setSpacing(2)
         self.vboxlayout1.setObjectName(_fromUtf8("vboxlayout1"))
         self.label = QtGui.QLabel(self.replay_gain)
         self.label.setObjectName(_fromUtf8("label"))
@@ -48,6 +60,12 @@ class Ui_ReplayGainOptionsPage(object):
         self.wvgain_command = QtGui.QLineEdit(self.replay_gain)
         self.wvgain_command.setObjectName(_fromUtf8("wvgain_command"))
         self.vboxlayout1.addWidget(self.wvgain_command)
+        self.label_5 = QtGui.QLabel(self.replay_gain)
+        self.label_5.setObjectName(_fromUtf8("label_5"))
+        self.vboxlayout1.addWidget(self.label_5)
+        self.aacgain_command = QtGui.QLineEdit(self.replay_gain)
+        self.aacgain_command.setObjectName(_fromUtf8("aacgain_command"))
+        self.vboxlayout1.addWidget(self.aacgain_command)
         self.vboxlayout.addWidget(self.replay_gain)
         spacerItem = QtGui.QSpacerItem(263, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
@@ -56,9 +74,10 @@ class Ui_ReplayGainOptionsPage(object):
         QtCore.QMetaObject.connectSlotsByName(ReplayGainOptionsPage)
 
     def retranslateUi(self, ReplayGainOptionsPage):
-        self.replay_gain.setTitle(_("Replay Gain"))
-        self.label.setText(_("Path to VorbisGain:"))
-        self.label_2.setText(_("Path to MP3Gain:"))
-        self.label_3.setText(_("Path to metaflac:"))
-        self.label_4.setText(_("Path to wvgain:"))
+        self.replay_gain.setTitle(_translate("ReplayGainOptionsPage", "Replay Gain", None))
+        self.label.setText(_translate("ReplayGainOptionsPage", "Path to VorbisGain:", None))
+        self.label_2.setText(_translate("ReplayGainOptionsPage", "Path to MP3Gain:", None))
+        self.label_3.setText(_translate("ReplayGainOptionsPage", "Path to metaflac:", None))
+        self.label_4.setText(_translate("ReplayGainOptionsPage", "Path to wvgain:", None))
+        self.label_5.setText(_translate("ReplayGainOptionsPage", "Path to aacgain:", None))
 

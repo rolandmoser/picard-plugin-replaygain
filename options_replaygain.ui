@@ -69,6 +69,16 @@
       <item>
        <widget class="QLineEdit" name="wvgain_command"/>
       </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Path to aacgain:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="aacgain_command"/>
+      </item>
      </layout>
     </widget>
    </item>
