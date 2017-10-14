@@ -40,7 +40,6 @@ def calculate_replay_gain_for_files(files, format, tagger):
     """Calculates the replay gain for a list of files in album mode."""
     file_list = ['%s' % encode_filename(f.filename) for f in files]
 
-    tagger.log.info('Format %s' % (format))
     if format in REPLAYGAIN_COMMANDS \
         and tagger.config.setting[REPLAYGAIN_COMMANDS[format][0]]:
         command = tagger.config.setting[REPLAYGAIN_COMMANDS[format][0]]
